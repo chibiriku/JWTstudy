@@ -59,7 +59,7 @@ public Authentication attemptAuthentication(HttpServletRequest request, HttpServ
         UserLoginForm form = new ObjectMapper().readValue(request.getInputStream(), UserLoginForm.class);
         // これでデフォルトのProviderを利用しつつ、ユーザーレコードの取得に関してはUserDetailsServiceの実装クラスのloadUserByUsernameを利用する
         return this.authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(form.getName(), form.getPassword(), new ArrayList<>())
+                new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword(), new ArrayList<>())
         );
     } catch (IOException e) {
         throw new RuntimeException(e);
